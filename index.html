@@ -239,6 +239,38 @@
       color: var(--accent);
       letter-spacing: 0.04em;
     }
+    .rate-formula {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 8px 0 4px;
+    }
+    .rate-box {
+      background: #fce4ec;
+      border: 1px solid var(--pale);
+      border-radius: 2px;
+      padding: 6px 14px;
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--accent);
+      font-family: var(--serif);
+      font-style: normal;
+      letter-spacing: 0.03em;
+    }
+    .rate-op {
+      font-size: 18px;
+      color: var(--pale);
+      font-weight: 400;
+    }
+    .note-text {
+      font-size: 14px;
+      color: var(--soft);
+      font-family: var(--serif);
+      font-style: italic;
+      line-height: 1.7;
+      margin-top: 6px;
+    }
   </style>
 </head>
 <body>
@@ -271,20 +303,61 @@
         <button class="close-btn" onclick="closePanel('how')">Close</button>
       </div>
 
-      <button class="tc-btn" onclick="toggle('isf', this)">International Shipping Fee</button>
+      <button class="tc-btn" onclick="toggle('rate', this)">Rate &amp; Fees</button>
+      <div class="panel" id="rate">
+        <div class="panel-heading">Rate &amp; Fees</div>
+
+        <div class="plain-block">
+          <div class="plain-label">Exchange Rate</div>
+          <div class="rate-formula">
+            <div class="rate-box">RMB Price</div>
+            <div class="rate-op">×</div>
+            <div class="rate-box">9.33</div>
+          </div>
+        </div>
+
+        <div class="plain-block">
+          <div class="plain-label">Service Fee</div>
+          <div class="plain-text">&#8369;50 per order. Orders of 10 or more items incur an additional &#8369;50.</div>
+        </div>
+
+        <div class="plain-block">
+          <div class="plain-label">Payment Fee</div>
+          <div class="plain-text">Varies depending on the payment platform used.</div>
+        </div>
+
+        <div class="plain-block">
+          <div class="plain-label">China Local Shipping Fee</div>
+          <div class="plain-text">Some items have an additional local shipping fee within China. I will let you know if applicable, and a full breakdown will always be sent for transparency.</div>
+        </div>
+
+        <button class="close-btn" onclick="closePanel('rate')">Close</button>
+      </div>
+
+      <button class="tc-btn" onclick="toggle('isf', this)">Shipping Options</button>
       <div class="panel" id="isf">
-        <div class="panel-heading">International Shipping Fee (ISF)</div>
+        <div class="panel-heading">Shipping Options</div>
+
         <div class="isf-block">
-          <div class="isf-type">Solo Order</div>
-          <div class="isf-title">Included upfront</div>
-          <div class="isf-desc">ISF is already part of your total payment. You pay everything in one go before your item is purchased.</div>
+          <div class="isf-type">Option 1 — Solo Order</div>
+          <div class="isf-title">Direct Shipping to PH Address</div>
+          <div class="isf-desc">ISF is already included in your total upfront — one payment covers everything. Estimated delivery is 7–10 days via air freight (barring delays).<br><br>
+          This is the best option for large items, since ISF in consolidation is based on actual or volumetric weight of the parcel — the bigger the packaging, the higher the ISF. Air freight means faster ETA to your address.</div>
         </div>
+
         <div class="isf-sep"></div>
+
         <div class="isf-block">
-          <div class="isf-type">Batch Order</div>
-          <div class="isf-title">Determined on arrival</div>
-          <div class="isf-desc">ISF is calculated only once your item arrives with the batch shipment here in Philippines.</div>
+          <div class="isf-type">Option 2 — Consolidation Shipping</div>
+          <div class="isf-title">Batch Shipment — Two Payments</div>
+          <div class="isf-desc">
+            Items ship together at the end of every month.<br><br>
+            <strong style="color:var(--accent);font-style:normal;">1st Payment:</strong> Item price only — paid before purchase.<br>
+            <strong style="color:var(--accent);font-style:normal;">2nd Payment:</strong> ISF + local shipping fee — collected once your item arrives in the Philippines.<br><br>
+            If you're not ready to ship right away, your item can be held in the consolidation warehouse for up to 20 days.
+          </div>
         </div>
+
         <button class="close-btn" onclick="closePanel('isf')">Close</button>
       </div>
 
@@ -309,18 +382,14 @@
           <li>Missing the deadline may result in your order being cancelled.</li>
           <li>No cancellations once you have confirmed your order.</li>
           <li>No refunds after I have purchased your item from China Store.</li>
-          <li>Failure to pay the isf and local shipping fee within 20 days of notification — order will be forfeited with no refund.</li>
+          <li>Failure to pay the ISF and local shipping fee within 20 days of notification — order will be forfeited with no refund.</li>
         </ul>
         <button class="close-btn" onclick="closePanel('payment')">Close</button>
       </div>
 
-      <button class="tc-btn" onclick="toggle('fees', this)">Fees &amp; Delivery</button>
+      <button class="tc-btn" onclick="toggle('fees', this)">Local Delivery</button>
       <div class="panel" id="fees">
-        <div class="panel-heading">Fees &amp; Delivery</div>
-        <div class="plain-block">
-          <div class="plain-label">Service Fee</div>
-          <div class="plain-text">Service fee will be &#8369;50. Orders of 10 or more items incur an additional &#8369;50.</div>
-        </div>
+        <div class="panel-heading">Local Delivery</div>
         <div class="plain-block">
           <div class="plain-label">Local Shipping Fee</div>
           <div class="plain-text">Collected separately once items arrive in the Philippines via J&amp;T Express.</div>
